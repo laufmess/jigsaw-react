@@ -1,13 +1,218 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+html, body {
+  margin: 0px;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  position: relative;
+  touch-action: none;
+}
+
+canvas {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(126, 126, 126, 0.8); /* mobile webkit */
+}
+
+.ui {
+  position: absolute;
+  transition: .25s all;
+  z-index: 10;
+}
+
+.disabled {
+  pointer-events: none;
+  display: none;
+  opacity: 0;
+}
+
+.disabled * {
+  display: none;
+}
+
+.ui-container {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: .25s all;
+}
+
+.ui-popup-container {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .25);
+  transition: 1s all;
+}
+
+button[type="button"] {
+  color: #F1F1F1;
+  background: #7E7E7E;
+  padding: 8px 25px;
+  border-radius: 200px;
+  border: none;
+  cursor: pointer;
+  transition: .25s all;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.functionality {
+  display: flex;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #7E7E7E;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: .25s all;
+  margin-top: 10px;
+}
+
+.functionality:hover, button[type="button"]:hover {
+  background: rgba(126, 126, 126, 0.8);
+  transition: .10s all;
+}
+
+.functionality:active, button[type="button"]:active {
+  background: #9F9F9F;
+}
+
+.ui-popup {
+  background: #F1F1F1;
+  border-radius: 10px;
+  border: 1px solid black;
+  text-align: center;
+  max-width: 400px;
+  transform: translateY(0px);
+  transition: all .5s;
+}
+
+.section {
+  margin: 25px;
+}
+
+.section.container {
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  margin: 0px 0px 1em;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid rgba(126, 126, 126, 0.8);
+  outline: none;
+}
+
+input#url {
+  user-select: all;
+}
+
+input#cols, input#rows {
+  position: relative;
+  width: 50px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button[type="button"].copy {
+  padding: 8px 9px;
+}
+
+a {
+  color: #00577C;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* tooltip */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltip-content {
+  visibility: hidden;
+  width: 120px;
+  background-color: #7E7E7E;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: calc(25% + 3px);
+  right: 120%;
+}
+
+.tooltip .tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #7E7E7E;
+}
+
+.tooltip:hover .tooltip-content {
+  visibility: visible;
+}
+
+/* touch screen */
+
+@media (hover: none) {
+  .tooltip .tooltip-content {
+    display: none;
+  }
+
+  .functionality:hover, input[type="button"]:hover,
+  .functionality:active, input[type="button"]:active {
+    background: #7E7E7E;
+  }
 }
